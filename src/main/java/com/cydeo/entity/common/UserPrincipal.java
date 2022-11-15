@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserPrincipal implements UserDetails {
 
-   private User user;
+    private User user;
 
     public UserPrincipal(User user) {
         this.user = user;
@@ -19,8 +19,11 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+
         List<GrantedAuthority> authorityList = new ArrayList<>();
-        GrantedAuthority authority = new SimpleGrantedAuthority((this.user.getRole().getDescription()));
+
+        GrantedAuthority authority = new SimpleGrantedAuthority(this.user.getRole().getDescription());
+
         authorityList.add(authority);
 
         return authorityList;
@@ -28,7 +31,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        return this.user.getPassWord();
+        return this.user.getPassWord();   //how i can acccess to password field of the user object
     }
 
     @Override
@@ -48,11 +51,12 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
         return this.user.isEnabled();
     }
+
 }
