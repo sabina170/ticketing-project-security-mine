@@ -56,7 +56,6 @@ public class SecurityConfig {
                 .antMatchers("/task/employee/**").hasAuthority("Employee")
                 .antMatchers("/task/**").hasAuthority("Manager")
 //                .antMatchers("/task/**").hasAnyRole("EMPLOYEE","ADMIN")
-//                .antMatchers("/task/**").hasAuthority("ROLE_EMPLOYEE")
                 .antMatchers(
                         "/",
                         "/login",
@@ -68,11 +67,11 @@ public class SecurityConfig {
                 .and()
 //                .httpBasic()
                 .formLogin()
-                .loginPage("/login")
+                    .loginPage("/login")
 //                    .defaultSuccessUrl("/welcome")
-                .successHandler(authSuccessHandler)
-                .failureUrl("/login?error=true")
-                .permitAll()
+                    .successHandler(authSuccessHandler)
+                    .failureUrl("/login?error=true")
+                    .permitAll()
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
